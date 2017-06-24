@@ -54,8 +54,8 @@ function hoist(reactClass: ts.ClassDeclaration, sourceFile: ts.SourceFile) {
     }
 
     const [propType, stateType] = reactType.typeArguments;
-    const propTypeName = `I${className}Props`;
-    const stateTypeName = `I${className}State`;
+    const propTypeName = `${className}Props`;
+    const stateTypeName = `${className}State`;
     const propTypeDeclaration = ts.createTypeAliasDeclaration([], [], propTypeName, [], propType);
     const stateTypeDeclaration = ts.createTypeAliasDeclaration([], [], stateTypeName, [], stateType);
     const propTypeRef = ts.createTypeReferenceNode(propTypeName, []);

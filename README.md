@@ -36,18 +36,18 @@ class MyComponent extends React.Component {
 
 **output**
 ```ts
-interface IMyComponentProps {
+interface MyComponentProps {
   p: string;
   r: number | undefined;
 }
 
-interface IMyComponentState {
+interface MyComponentState {
   foo: number;
   bar: string;
   baz: number | undefined;
 }
 
-class MyComponent extends React.Component<IMyComponentProps, IMyComponentState> {
+class MyComponent extends React.Component<MyComponentProps, MyComponentState> {
   constructor() {
     super();
     this.state = { foo: 1, bar: 'str' };
