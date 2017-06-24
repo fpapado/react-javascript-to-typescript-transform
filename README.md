@@ -15,15 +15,15 @@ Transforms React code written in JavaScript to TypeScript.
 ## Example
 
 **input**
-```ts
+```jsx
 class MyComponent extends React.Component {
   static propTypes = {
-    p: React.PropTypes.string.isRequired,
-    r: React.PropTypes.number
+    prop1: React.PropTypes.string.isRequired,
+    prop2: React.PropTypes.number
   }
   constructor() {
     super();
-    this.state = { foo: 1, bar: 2 };
+    this.state = { foo: 1, bar: 'str' };
   }
   render() {
     return <div>{this.state.foo}, {this.state.bar}, {this.state.baz}</div>
@@ -35,13 +35,13 @@ class MyComponent extends React.Component {
 ```
 
 **output**
-```ts
-interface MyComponentProps {
-  p: string;
-  r: number | undefined;
+```tsx
+type MyComponentProps = {
+  prop1: string;
+  prop2: number | undefined;
 }
 
-interface MyComponentState {
+type MyComponentState = {
   foo: number;
   bar: string;
   baz: number | undefined;
