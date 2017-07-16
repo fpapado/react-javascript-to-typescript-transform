@@ -228,6 +228,11 @@ export function reactJSMakePropsAndStateInterfaceTransformFactoryFactory(typeChe
                             return result;
                         }
 
+                        // Ignore children, React types have it
+                        if (propertyAssignment.name.getText() === 'children') {
+                            return result;
+                        }
+
                         const typeValue = getTypeFromReactPropTypeExpression(propertyAssignment.initializer);
                         const isOptional = isPropTypeOptional(propertyAssignment.initializer);
                         const propertySignature = ts.createPropertySignature(
