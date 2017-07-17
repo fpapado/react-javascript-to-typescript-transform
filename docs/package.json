@@ -1,0 +1,28 @@
+{
+  "name": "react-javascript-to-typescript-transform-web",
+  "version": "1.0.0",
+  "author": "Mohsen Azimi <me@azimi.me>",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack-dev-server"
+  },
+  "dependencies": {
+    "@types/copy-webpack-plugin": "^4.0.0",
+    "@types/html-webpack-plugin": "^2.28.0",
+    "@types/react": "^15.0.38",
+    "@types/react-dom": "^15.5.1",
+    "@types/react-monaco-editor": "^0.8.1",
+    "@types/webpack": "^3.0.4",
+    "copy-webpack-plugin": "^4.0.1",
+    "html-webpack-plugin": "^2.29.0",
+    "monaco-editor": "^0.9.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-monaco-editor": "^0.8.1",
+    "ts-loader": "^2.3.0",
+    "ts-node": "^3.2.0",
+    "typescript": "^2.4.1",
+    "webpack": "^3.3.0",
+    "webpack-dev-server": "^2.5.1"
+  }
+}
