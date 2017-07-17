@@ -4,6 +4,7 @@ import * as HTMLWebpackPlugin from 'html-webpack-plugin';
 import * as  CopyWebpackPlugin from 'copy-webpack-plugin';
 
 const config: webpack.Configuration = {
+    devtool: 'source-map',
     entry: './editor.tsx',
     output: {
         path: path.join(__dirname, 'dist'),
