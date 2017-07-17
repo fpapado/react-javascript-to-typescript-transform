@@ -20,7 +20,8 @@ const config: webpack.Configuration = {
     },
     plugins: [
         new HTMLWebpackPlugin({
-            template: './index.html'
+            template: './index.html',
+            inject: 'body'
         }),
         new CopyWebpackPlugin([
             {
