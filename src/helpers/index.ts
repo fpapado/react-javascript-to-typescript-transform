@@ -1,5 +1,5 @@
 import * as ts from 'typescript';
-import * as kinds from './isKind';
+import * as kinds from 'ts-is-kind';
 
 export * from 'ts-is-kind';
 
