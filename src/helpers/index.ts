@@ -1,7 +1,7 @@
 import * as ts from 'typescript';
 import * as kinds from './isKind';
 
-export * from './isKind';
+export * from 'ts-is-kind';
 
 /**
  * If a class declaration a react class?
