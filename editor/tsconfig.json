@@ -3,6 +3,7 @@
         "target": "es5",
         "module": "commonjs",
         "moduleResolution": "node",
-        "jsx": "react"
+        "jsx": "react",
+        "outDir": "dist"
     }
 }

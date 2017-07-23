@@ -3,8 +3,7 @@ import { render } from 'react-dom';
 import MonacoEditor from 'react-monaco-editor';
 import * as ts from 'typescript';
 
-import { allTransforms } from '../src'
-import {react} from './react';
+import { allTransforms } from 'react-js-to-ts'
 
 const defaultInput = `
 import * as React from 'react';
@@ -26,7 +25,7 @@ class App extends React.Component<{}, AppState> {
     static toolbarHeight = 50;
     state = { input: defaultInput, output: '', windowSize: { width: 0, height: 0 } }
     compilerOptions: ts.CompilerOptions = {
-        target: ts.ScriptTarget.ES2017,
+        target: ts.ScriptTarget.ES2015,
         module: ts.ModuleKind.ES2015,
     }
     host: ts.CompilerHost = {
@@ -41,7 +40,7 @@ class App extends React.Component<{}, AppState> {
         getNewLine: () => '\n',
         getCurrentDirectory: () => '/',
         getDefaultLibFileName: () => 'lib.ts',
-        fileExists: (fileName: string) =>  {
+        fileExists: (fileName: string) => {
             console.log('fileExist', fileName)
             return fileName === 'main.tsx';
         },
@@ -69,17 +68,18 @@ class App extends React.Component<{}, AppState> {
         editor.focus();
     }
     onChange = (newValue: string, e: monaco.editor.IModelContentChangedEvent2) => {
-        this.setState({input: newValue});
+        this.setState({ input: newValue });
         try {
             const output = this.compile(this.state.input);
-            this.setState({ output  })
+            this.setState({ output })
         } catch (error) {
             console.error(error);
         }
     }
     compile = (input: string) => {
-        const sourceFile = ts.createSourceFile('main.tsx', this.state.input, ts.ScriptTarget.ES2017);
+        const sourceFile = ts.createSourceFile('main.tsx', this.state.input, this.compilerOptions.target);
         const program = ts.createProgram(['main.tsx'], this.compilerOptions, this.host);
+        program.emit();
         const typeChecker = program.getTypeChecker();
         const result = ts.transform([sourceFile], allTransforms.map(f => f(typeChecker)));
         const printer = ts.createPrinter();
