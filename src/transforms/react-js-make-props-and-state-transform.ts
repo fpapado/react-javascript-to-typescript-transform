@@ -256,7 +256,7 @@ export function reactJSMakePropsAndStateInterfaceTransformFactoryFactory(typeChe
              * @param node React propTypes value
              */
             function getTypeFromReactPropTypeExpression(node: ts.PropertyAccessExpression) {
-                const text = node.getText().replace(/React\.PropTypes\./, '');
+                const text = node.getText().replace(/(React\.)?PropTypes\./, '');
                 let result = null;
                 if (/string/.test(text)) {
                     result = ts.createKeywordTypeNode(ts.SyntaxKind.StringKeyword);
@@ -300,7 +300,7 @@ export function reactJSMakePropsAndStateInterfaceTransformFactoryFactory(typeChe
              * @param node React propTypes member node
              */
             function isPropTypeOptional(node: ts.PropertyAccessExpression) {
-                const text = node.getText().replace(/React\.PropTypes\./, '');
+                const text = node.getText().replace(/(React\.)?PropTypes\./, '');
                 return !/\.isRequired/.test(text)
             }
         };

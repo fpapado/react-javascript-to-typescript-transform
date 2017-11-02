@@ -87,7 +87,14 @@ function visitSourceFile(sourceFile: ts.SourceFile, typeChecker: ts.TypeChecker)
  */
 function getComponentName(propTypeAssignment: ts.Statement, sourceFile: ts.SourceFile) {
     const text = propTypeAssignment.getText(sourceFile);
-    return text.substr(0, text.indexOf('.'));
+
+    // if declared as Component.propTypes = ...
+    if (helpers.isPropertyAccessPropTypeDeclaration(propTypeAssignment)) {
+        return text.substr(0, text.indexOf('.'));
+    } else {
+        // declared as Component['propTypes']
+        return text.substr(0, text.indexOf('['));
+    }
 }
 
 /**
