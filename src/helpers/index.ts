@@ -97,7 +97,6 @@ export function isMapAssignmentPropTypeDeclaration(statement: ts.Statement): sta
         // && kinds.isPropertyAccessExpression(statement.expression.left)
         && /\['propTypes'\]$/.test(statement.expression.left.getText())
 
-    console.log(isMapAssignment);
     return isMapAssignment;
 }
 
