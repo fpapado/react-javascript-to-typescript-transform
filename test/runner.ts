@@ -22,13 +22,13 @@ import {
 
 /** Map between a transform and its test folder */
 const transformToFolderMap: [string, TransformFactoryFactory[]][] = [
-    ['react-js-make-props-and-state-transform', [reactJSMakePropsAndStateInterfaceTransformFactoryFactory]],
-    ['react-hoist-generics-transform', [reactHoistGenericsTransformFactoryFactory]],
-    ['react-remove-static-prop-types-member-transform', [reactRemoveStaticPropTypesMemberTransformFactoryFactory]],
+    // ['react-js-make-props-and-state-transform', [reactJSMakePropsAndStateInterfaceTransformFactoryFactory]],
+    // ['react-hoist-generics-transform', [reactHoistGenericsTransformFactoryFactory]],
+    // ['react-remove-static-prop-types-member-transform', [reactRemoveStaticPropTypesMemberTransformFactoryFactory]],
     ['react-remove-prop-types-assignment-transform', [reactRemovePropTypesAssignmentTransformFactoryFactory]],
-    ['collapse-intersection-interfaces-transform', [collapseIntersectionInterfacesTransformFactoryFactory]],
-    ['react-move-prop-types-to-class-transform', [reactMovePropTypesToClassTransformFactoryFactory]],
-    ['end-to-end', allTransforms],
+    // ['collapse-intersection-interfaces-transform', [collapseIntersectionInterfacesTransformFactoryFactory]],
+    // ['react-move-prop-types-to-class-transform', [reactMovePropTypesToClassTransformFactoryFactory]],
+    // ['end-to-end', allTransforms],
 ];
 
 for (const [testFolderName, getFactory] of transformToFolderMap) {

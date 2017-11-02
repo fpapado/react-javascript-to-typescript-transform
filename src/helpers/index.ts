@@ -61,15 +61,44 @@ export function isReactHeritageClause(clause: ts.HeritageClause) {
 /**
  * Return true if a statement is a React propType assignment statement
  * @example
+ * Note that only the left hand side matters here
  * SomeComponent.propTypes = { foo: React.PropTypes.string };
+ * SomeComponent['propTypes'] = { foo: React.PropTypes.string };
  * @param statement
  */
 export function isReactPropTypeAssignmentStatement(statement: ts.Statement): statement is ts.ExpressionStatement {
+    return isPropertyAccessPropTypeDeclaration(statement) || isMapAssignmentPropTypeDeclaration(statement);
+}
+/**
+ * Return true if a statement is a propType assignment via property access
+ * @example
+ * SomeComponent.propTypes = { foo: React.PropTypes.string };
+ * @param statement
+ */
+export function isPropertyAccessPropTypeDeclaration(statement: ts.Statement): statement is ts.ExpressionStatement {
     return kinds.isExpressionStatement(statement)
         && kinds.isBinaryExpression(statement.expression)
         && statement.expression.operatorToken.kind === ts.SyntaxKind.FirstAssignment
         && kinds.isPropertyAccessExpression(statement.expression.left)
         && /\.propTypes$|\.propTypes\..+$/.test(statement.expression.left.getText())
+}
+
+/**
+ * Return true if a statement is a propType assignment statement via map assignment
+ * @example
+ * SomeComponent['propTypes'] = { foo: React.PropTypes.string };
+ * @param statement
+ */
+export function isMapAssignmentPropTypeDeclaration(statement: ts.Statement): statement is ts.ExpressionStatement {
+    const isMapAssignment = kinds.isExpressionStatement(statement)
+        && kinds.isBinaryExpression(statement.expression)
+        && statement.expression.operatorToken.kind === ts.SyntaxKind.FirstAssignment
+        // TODO: Figure out how Foo['something'] is classified
+        // && kinds.isPropertyAccessExpression(statement.expression.left)
+        && /\['propTypes'\]$/.test(statement.expression.left.getText())
+
+    console.log(isMapAssignment);
+    return isMapAssignment;
 }
 
 /**
